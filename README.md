@@ -1,76 +1,93 @@
 # ASMC 1-3 (Advanced StackMatch Controller)
 
-**ASMC 1-3** is an advanced, microcontroller-driven antenna stack controller based on the **Arduino Nano (ATmega328P)** module and an interactive **Python GUI** interface. It is designed for demanding amateur radio environments with a strong focus on reliability, hardware safety, and operational flexibility.
+ASMC 1-3 je napredni mikrokontrolerski sustav za upravljanje i preklapanje triju visokofrekventnih (HF) antena u StackMatch konfiguraciji (TOP-A, MID-B, BOT-C). Sustav se sastoji od **Arduino Nano** mikrokontrolera koji izvršava logiku preklapanja u realnom vremenu te **Python (Tkinter) GUI** aplikacije za daljinsko upravljanje i nadzor putem serijske (USB) veze.
 
 ---
 
-## 🚀 Key Features
+## 🚀 Glavne Značajke
 
-* **Bi-directional USB Communication:** Synchronized real-time status management and monitoring between the hardware and the PC.
-* **Dual Operating Modes (RX/TX):** 
-  * **Exclusive Mode (EXCL):** Allows listening to only one selected antenna at a time.
-  * **Flexible Mode (FLEX):** Allows free combination and simultaneous selection of multiple antennas.
-* **Advanced PTT Interlock Protection:** Software and hardware lockout preventing hot-switching under high RF power.
-* **Automatic Matching (Relay 4):** Independent activation of the wideband matching transformer when using two or three active antennas simultaneously.
-* **Fail-Safe Safety Logic:** In case of power loss or system failure, the hardware automatically defaults to all antennas connected ($A+B+C$) via NC (Normally Closed) relay contacts.
-* **Visual LED Indication:** Status LEDs featuring a PWM fade ("breathing") effect during transmission.
-* **Built-in Watchdog Timer:** Automatically resets the microcontroller in case of any software freeze.
+- **Standardna BCC Matrix Logika:** Podrška za rad s pojedinačnim antenama (A, B, C), kombinacijama po dvije (A+B, A+C, B+C) ili svim tri antene istovremeno (A+B+C).
+- **Invertirani NC Relejni Izlazi:** Zbog zaštite i specifičnog ožičenja, releji u unpowered (NC) stanju po defaultu spajaju sve antene zajedno.
+- **Dual PTT Optokaplerski Ulaz (PC817):** Podrška za HIGH i LOW PTT okidanje s ugrađenim PTT Interlockom i tail-delay zaštitom.
+- **Fleksibilni RX/TX Načini Rada:** Podrška za ekskluzivni (EXCL) i fleksibilni (FLEX) RX način preklapanja.
+- **Dvosmjerna Serial Komunikacija:** Automatsko usklađivanje stanja između fizičkih tipki na uređaju i Python GUI sučelja.
+- **Watchdog Timer (WDT):** Automatsko resetiranje kontrolera u slučaju zastoja.
 
 ---
 
-## 📌 Pinout (Arduino Nano)
+## 📌 Popis Arduino Nano Pinova
 
-| Arduino Pin | Code Label | Function |
+| Pin na Arduinu | Tip Pina | Funkcija / Opis |
 | :--- | :--- | :--- |
-| **Pin 2 (D2)** | `RELAY_1` | Control output for Relay 1 (Antenna A / TOP) |
-| **Pin 3 (D3)** | `RELAY_2` | Control output for Relay 2 (Antenna B / MID) |
-| **Pin 4 (D4)** | `RELAY_3` | Control output for Relay 3 (Antenna C / BOT) |
-| **Pin 5-7** | `BTN_RX_A/B/C` | Physical pushbuttons for RX antenna selection |
-| **Pin 8-10** | `BTN_TX_A/B/C` | Physical pushbuttons for TX antenna profile selection |
-| **Pin 11 (D11)** | `PTT_PIN` | PTT input via optocoupler (`LOW` = transmit) |
-| **Pin 12-13** | `BTN_RX/TX_ALL`| Pushbuttons for quick selection of all antennas ($A+B+C$) |
-| **Pin A0-A2** | `LED_RX_A/B/C` | Status LEDs for receive |
-| **Pin A3, A6, A7** | `LED_TX_A/B/C` | PWM status LEDs for transmit |
-| **Pin A4** | `BTN_RX_MODE` | Pushbutton to toggle RX mode (EXCL / FLEX) |
-| **Pin A5** | `RELAY_4` | Control output for Relay 4 (Wideband Transformer) |
+| **D2** | Izlaz | `RELAY_1` (Upravljanje relejem 1) |
+| **D3** | Izlaz | `RELAY_2` (Upravljanje relejem 2) |
+| **D4** | Izlaz | `RELAY_3` (Upravljanje relejem 3) |
+| **A5** | Izlaz | `RELAY_4` (Upravljanje relejem transformatora / fazora) |
+| **D5** | Ulaz (Pull-up) | `BTN_RX_A` (RX Antena TOP-A tipkalo) |
+| **D6** | Ulaz (Pull-up) | `BTN_RX_B` (RX Antena MID-B tipkalo) |
+| **D7** | Ulaz (Pull-up) | `BTN_RX_C` (RX Antena BOT-C tipkalo) |
+| **D12** | Ulaz (Pull-up) | `BTN_RX_ALL` (Aktivacija svih RX antena) |
+| **A4** | Ulaz (Pull-up) | `BTN_RX_MODE` (Prebacivanje EXCL / FLEX moda) |
+| **D8** | Ulaz (Pull-up) | `BTN_TX_A` (TX Antena TOP-A tipkalo) |
+| **D9** | Ulaz (Pull-up) | `BTN_TX_B` (TX Antena MID-B tipkalo) |
+| **D10** | Ulaz (Pull-up) | `BTN_TX_C` (TX Antena BOT-C tipkalo) |
+| **D13** | Ulaz (Pull-up) | `BTN_TX_ALL` (Aktivacija svih TX antena) |
+| **D11** | Ulaz (Pull-up) | `PTT_PIN` (Ulaz s PC817 optokaplera) |
+| **A0** | Izlaz (PWM/Digital) | `LED_RX_A` (Indikator RX Antena A) |
+| **A1** | Izlaz (PWM/Digital) | `LED_RX_B` (Indikator RX Antena B) |
+| **A2** | Izlaz (PWM/Digital) | `LED_RX_C` (Indikator RX Antena C) |
+| **A3** | Izlaz (PWM/Analog) | `LED_TX_A` (Indikator TX Antena A + Fade efekt) |
+| **A6** | Izlaz (PWM/Analog) | `LED_TX_B` (Indikator TX Antena B + Fade efekt) |
+| **A7** | Izlaz (PWM/Analog) | `LED_TX_C` (Indikator TX Antena C + Fade efekt) |
 
 ---
 
-## 🛠️ Repository Structure
+## ⚡ Tablica Stanja Releja (BCC Matrica & NC Logika)
 
-```text
-ASMC-1-3/
-│
-├── arduino/
-│   └── stack_match_usb2.ino      # Arduino Nano source code
-│
-├── software/
-│   └── asmc_gui.py               # Python graphical user interface (GUI)
-│
-└── SCHEMATICS.md                 # Detailed wiring schematics and instructions
+*(Napomena: Zbog upotrebe `!r` inverzije u kodu i Normally Closed releja, `HIGH` signal s Arduina označava ugašeni relej, dok `LOW` signal označava aktivirani/uključeni relej).*
 
-⚙️ Setup & Installation
-1. Arduino Firmware
+| Kombinacija Antena | RELAY_1 (D2) | RELAY_2 (D3) | RELAY_3 (D4) | RELAY_4 (A5) |
+| :--- | :--- | :--- | :--- | :--- |
+| **TOP (A)** | HIGH (Ugašen) | LOW (Uključen) | LOW (Uključen) | LOW (Uključen) |
+| **MID (B)** | LOW (Uključen) | HIGH (Ugašen) | LOW (Uključen) | LOW (Uključen) |
+| **BOT (C)** | LOW (Uključen) | LOW (Uključen) | HIGH (Ugašen) | LOW (Uključen) |
+| **TOP + MID (A+B)** | HIGH (Ugašen) | HIGH (Ugašen) | LOW (Uključen) | HIGH (Ugašen) |
+| **TOP + BOT (A+C)** | HIGH (Ugašen) | LOW (Uključen) | HIGH (Ugašen) | HIGH (Ugašen) |
+| **MID + BOT (B+C)** | LOW (Uključen) | HIGH (Ugašen) | HIGH (Ugašen) | HIGH (Ugašen) |
+| **ALL (A+B+C)** | HIGH (Ugašen) | HIGH (Ugašen) | HIGH (Ugašen) | HIGH (Ugašen) |
+| **STANDBY (Nijedna)**| LOW (Uključen) | LOW (Uključen) | LOW (Uključen) | LOW (Uključen) |
 
-    Open the stack_match_usb2.ino project in Arduino IDE (recommended version 1.8.19).
+---
 
-    Select board: Arduino Nano with processor ATmega328P.
+## 🐍 Upute za Python GUI Aplikaciju
 
-    Ensure the library #include <avr/wdt.h> is included.
+Python sučelje omogućava vizualni nadzor i upravljanje preklapanjem direktno s vašeg računala.
 
-    Upload the code to the Arduino Nano.
+### 1. Preduvjeti
 
-2. Python GUI Interface
+Potrebno je imati instaliran Python 3.x i biblioteku `pyserial`:
 
-    Ensure Python and required libraries (e.g., pyserial, tkinter) are installed.
+```bash
+pip install pyserial
+```
 
-    Run the application:
-python asmc_gui.py
-Select the appropriate COM port and click Connect.
+### 2. Pokretanje Aplikacije
 
-📄 License
+Pokrenite skriptu iz naredbenog retka ili terminala:
 
-This project is developed for amateur radio use. Feel free to use, upgrade, and adapt it to your needs.
+```bash
+python asm_controller.py
+```
 
-73!
+### 3. Korištenje Aplikacije
 
+1. **Odabir COM Porta:** U gornjoj traci kliknite na gumb **Scan**, odaberite odgovarajući COM port na koji je spojen Arduino Nano te kliknite **Connect**.
+2. **Upravljanje RX Antenama:**
+   - Kliknite na gumb **RX** pokraj željene antene (TOP-A, MID-B, BOT-C).
+   - Za brzi odabir svih antena odjednom koristite gumb **ALL RX**.
+3. **Upravljanje TX Antenama:**
+   - Prebacite željene antene za predaju pomoću **TX** gumba ili gumba **ALL TX**.
+4. **Izmjena RX Moda:**
+   - Klikom na gumb **MODE: EXCL / MODE: FLEX** prebacujete između ekskluzivnog načina (samo jedna antena aktivna na prijemu) i fleksibilnog načina (proizvoljna kombinacija antena na prijemu).
+5. **Indikator Stanja:**
+   - Donja traka i led indikatori na sučelju u realnom vremenu prikazuju PTT status (STANDBY ili ENGAGED) i trenutno aktivnu kombinaciju antena.
