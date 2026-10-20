@@ -194,7 +194,7 @@ python asm_controller.py
 5. **Indikator Stanja:**
    - Donja traka i led indikatori na sučelju u realnom vremenu prikazuju PTT status (STANDBY ili ENGAGED) i trenutno aktivnu kombinaciju antena.
 
-## 📄 Licenca - License
+## 📄 License
 
 ### 🇭🇷 Hrvatski
 Ovaj projekt je namijenjen isključivo za nekomercijalne, radioamaterske svrhe. Distribucija, modificiranje i korištenje softvera i sklopovskog rješenja dozvoljeni su besplatno u amaterske svrhe, uz obavezno navođenje autora. Komercijalna upotreba ili preprodaja bez izričitog dopuštenja autora strogo su zabranjene. Softver se pruža "kakav jest", bez ikakvih jamstava.
