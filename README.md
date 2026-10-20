@@ -13,7 +13,7 @@ The **ASMC 1-3** is an advanced, microcontroller-based antenna controller design
 - [Relay & Antenna Logic Matrix](#-relay--antenna-logic-matrix)
 - [Power-Off Fail-Safe Behavior (NC State)](#-power-off-fail-safe-behavior-nc-state)
 - [Python GUI Application Setup & Usage](#-python-gui-application-setup--usage)
-- [Licenca / License](#-licenca-/-license)
+- [Licenca - License](#-licenca--license)
 
 ---
 
