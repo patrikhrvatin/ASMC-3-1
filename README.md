@@ -80,14 +80,14 @@ Running the Application
     Connect the Arduino Nano to your PC via USB cable.
 
     Launch the application:
- ```bash
+```bash
 
 python stack_match_gui.py
 ```
 
 Select your Arduino's COM Port from the top drop-down menu and click Connect.
 
-Features:
+### Features:
 
     Independent antenna toggling (TOP-A, MID-B, BOT-C) for RX and TX paths.
 
