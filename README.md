@@ -69,42 +69,27 @@ The hardware controller is engineered using **NC (Normally Closed)** relay conta
 ## 💻 Python GUI Application Setup & Usage
 
 The Python GUI provides real-time status monitoring, COM port scanning, manual RX/TX switching, and mode configuration over a serial connection.
-## 🐍 Upute za Python GUI Aplikaciju
 
-Python sučelje omogućava vizualni nadzor i upravljanje preklapanjem direktno s vašeg računala.
+### 1. Prerequisites
 
-### 1. Preduvjeti
-
-Potrebno je imati instaliran Python 3.x i biblioteku `pyserial`:
-
-```bash
-pip install pyserial
-```
-
-### 2. Pokretanje Aplikacije
-
-Pokrenite skriptu iz naredbenog retka ili terminala:
-
-```bash
-python asm_controller.py
-```
-### Prerequisites
 Ensure Python 3 is installed along with the required serial library:
+
 ```bash
 pip install pyserial
 ```
-Running the Application
 
-    Connect the Arduino Nano to your PC via USB cable.
-    Launch the application:
+### 2. Running the Application
+
+Connect the Arduino Nano to your PC via USB cable.
+Launch the application:
 
 ```bash
-python stack_match_gui.py
+python stack_match_gui6.py
 ```
 
 Select your Arduino's COM Port from the top drop-down menu and click Connect.
 
-### Features:
+### 3. Features:
 
     Independent antenna toggling (TOP-A, MID-B, BOT-C) for RX and TX paths.
 
