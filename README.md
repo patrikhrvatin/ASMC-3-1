@@ -188,6 +188,11 @@ python asm_controller.py
    - Za brzi odabir svih antena odjednom koristite gumb **ALL RX**.
 3. **Upravljanje TX Antenama:**
    - Prebacite željene antene za predaju pomoću **TX** gumba ili gumba **ALL TX**.
+4. **Izmjena RX Moda:**
+   - Klikom na gumb **MODE: EXCL / MODE: FLEX** prebacujete između ekskluzivnog načina (samo jedna antena aktivna na prijemu) i fleksibilnog načina (proizvoljna kombinacija antena na prijemu).
+5. **Indikator Stanja:**
+   - Donja traka i led indikatori na sučelju u realnom vremenu prikazuju PTT status (STANDBY ili ENGAGED) i trenutno aktivnu kombinaciju antena.
+
 ### 4. 📄 Licenca / License
 
 ## 
@@ -201,7 +206,4 @@ Ovaj projekt je namijenjen isključivo za nekomercijalne, radioamaterske svrhe. 
 ### 🇬🇧 English
 
 This project is intended strictly for non-commercial, amateur radio purposes. Distribution, modification, and use of the software and hardware design are permitted free of charge for amateur use, provided that the original author is credited. Commercial use or resale without explicit permission from the author is strictly prohibited. The software is provided "as is", without warranty of any kind.
-4. **Izmjena RX Moda:**
-   - Klikom na gumb **MODE: EXCL / MODE: FLEX** prebacujete između ekskluzivnog načina (samo jedna antena aktivna na prijemu) i fleksibilnog načina (proizvoljna kombinacija antena na prijemu).
-5. **Indikator Stanja:**
-   - Donja traka i led indikatori na sučelju u realnom vremenu prikazuju PTT status (STANDBY ili ENGAGED) i trenutno aktivnu kombinaciju antena.
+
