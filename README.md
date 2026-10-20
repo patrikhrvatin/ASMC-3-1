@@ -13,7 +13,7 @@ The **ASMC 1-3** is an advanced, microcontroller-based antenna controller design
 - [Relay & Antenna Logic Matrix](#-relay--antenna-logic-matrix)
 - [Power-Off Fail-Safe Behavior (NC State)](#-power-off-fail-safe-behavior-nc-state)
 - [Python GUI Application Setup & Usage](#-python-gui-application-setup--usage)
-- [Licenca - License](#-licenca--license)
+- [License](#-license)
 
 ---
 
@@ -194,17 +194,13 @@ python asm_controller.py
 5. **Indikator Stanja:**
    - Donja traka i led indikatori na sučelju u realnom vremenu prikazuju PTT status (STANDBY ili ENGAGED) i trenutno aktivnu kombinaciju antena.
 
-📄 Licenca - License
-
-## 
+## 📄 Licenca - License
 
 ### 🇭🇷 Hrvatski
-
 Ovaj projekt je namijenjen isključivo za nekomercijalne, radioamaterske svrhe. Distribucija, modificiranje i korištenje softvera i sklopovskog rješenja dozvoljeni su besplatno u amaterske svrhe, uz obavezno navođenje autora. Komercijalna upotreba ili preprodaja bez izričitog dopuštenja autora strogo su zabranjene. Softver se pruža "kakav jest", bez ikakvih jamstava.
 
----
-
 ### 🇬🇧 English
+This project is intended strictly for non-commercial, amateur radio purposes. Distribution, modification, and use of the software and hardware design are permitted free of charge for amateur use, provided that the original author is credited. Commercial use or resale without explicit permission from the author is strictly prohibited. The software is provided "as is", without warranty of any kind.
 
 This project is intended strictly for non-commercial, amateur radio purposes. Distribution, modification, and use of the software and hardware design are permitted free of charge for amateur use, provided that the original author is credited. Commercial use or resale without explicit permission from the author is strictly prohibited. The software is provided "as is", without warranty of any kind.
 
