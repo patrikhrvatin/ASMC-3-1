@@ -4,7 +4,7 @@
   <img src="asm_gui.png" alt="ASMC 1-3 GUI Interface" width="650">
 </p>
 
-The **ASMC 1-3** is an advanced, microcontroller-based antenna controller designed for managing multi-antenna arrays (TOP-A, MID-B, BOT-C), fully aligned with the standard **BCC / QRO.CZ** switching matrix. The system consists of an **Arduino Nano** hardware module with optocoupler-isolated PTT input protection and a custom **Python/Tkinter GUI** application for two-way serial communication and real-time monitoring over USB.
+The **ASMC 1-3** is an advanced, microcontroller-based antenna controller designed for managing multi-antenna arrays (TOP-A, MID-B, BOT-C), fully aligned with the standard **BCC** switching matrix. The system consists of an **Arduino Nano** hardware module with optocoupler-isolated PTT input protection and a custom **Python/Tkinter GUI** application for two-way serial communication and real-time monitoring over USB.
 
 ---
 
