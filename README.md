@@ -91,11 +91,11 @@ Select your Arduino's COM Port from the top drop-down menu and click Connect.
 
 ### 3. Features:
 
-    Independent antenna toggling (TOP-A, MID-B, BOT-C) for RX and TX paths.
+Independent antenna toggling (TOP-A, MID-B, BOT-C) for RX and TX paths.
 
-    Dynamic MODE button (EXCL for single antenna selection / FLEX for multi-antenna selection).
+Dynamic MODE button (EXCL for single antenna selection / FLEX for multi-antenna selection).
 
-    Real-time PTT status visual indicators with smooth LED fading animations during transmission.
+Real-time PTT status visual indicators with smooth LED fading animations during transmission.
 
 ---
 
