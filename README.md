@@ -1,4 +1,4 @@
-# ASMC 1-3 (Advanced StackMatch Controller)
+# ASMC 1-3 (Advanced StackMatch Controller) by 9A5CW
 
 <p align="left">
   <img src="asmc_E_F_mode.png" alt="ASMC 1-3 GUI Interface" width="650">
