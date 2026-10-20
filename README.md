@@ -70,6 +70,7 @@ The Python GUI provides real-time status monitoring, COM port scanning, manual R
 Ensure Python 3 is installed along with the required serial library:
 ```bash
 pip install pyserial
+```
 Running the Application
 
     Connect the Arduino Nano to your PC via USB cable.
