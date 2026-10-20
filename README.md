@@ -1,6 +1,6 @@
 # ASMC 1-3 (Advanced StackMatch Controller)
 
-<p align="center">
+<p align="left">
   <img src="asmc2.png" alt="ASMC 1-3 GUI Interface" width="550">
 </p>
 
