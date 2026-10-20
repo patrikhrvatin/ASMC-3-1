@@ -1,7 +1,7 @@
 # ASMC 1-3 (Advanced StackMatch Controller)
 
 <p align="left">
-  <img src="asmc2.png" alt="ASMC 1-3 GUI Interface" width="550">
+  <img src="asmc_E_F_mode.png" alt="ASMC 1-3 GUI Interface" width="550">
 </p>
 
 The **ASMC 1-3** is an advanced, microcontroller-based antenna controller designed for managing multi-antenna arrays (TOP-A, MID-B, BOT-C), fully aligned with the standard **BCC** switching matrix. The system consists of an **Arduino Nano** hardware module with optocoupler-isolated PTT input protection and a custom **Python/Tkinter GUI** application for two-way serial communication and real-time monitoring over USB.
