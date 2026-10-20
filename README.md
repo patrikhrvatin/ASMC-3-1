@@ -1,5 +1,98 @@
 # ASMC 1-3 (Advanced StackMatch Controller)
 
+The **ASMC 1-3** is an advanced, microcontroller-based antenna controller designed for managing multi-antenna arrays (TOP-A, MID-B, BOT-C), fully aligned with the standard **BCC / QRO.CZ** switching matrix. The system consists of an **Arduino Nano** hardware module with optocoupler-isolated PTT input protection and a custom **Python/Tkinter GUI** application for two-way serial communication and real-time monitoring over USB.
+
+---
+
+## 📋 Table of Contents
+- [Arduino Pinout](#-arduino-pinout)
+- [Relay & Antenna Logic Matrix](#-relay--antenna-logic-matrix)
+- [Power-Off Fail-Safe Behavior (NC State)](#-power-off-fail-safe-behavior-nc-state)
+- [Python GUI Application Setup & Usage](#-python-gui-application-setup--usage)
+
+---
+
+## 📌 Arduino Pinout
+
+| Arduino Pin | Parameter / Function | Description |
+| :--- | :--- | :--- |
+| **Pin 2** | `RELAY_1` | Control output for Relay Group 1 (Inverted logic) |
+| **Pin 3** | `RELAY_2` | Control output for Relay Group 2 (Inverted logic) |
+| **Pin 4** | `RELAY_3` | Control output for Relay Group 3 (Inverted logic) |
+| **Pin A5** | `RELAY_4` | Control output for Auxiliary Relay 4 / Phase Switch (Inverted logic) |
+| **Pin 5** | `BTN_RX_A` | Pushbutton input for RX Antenna A (TOP) selection |
+| **Pin 6** | `BTN_RX_B` | Pushbutton input for RX Antenna B (MID) selection |
+| **Pin 7** | `BTN_RX_C` | Pushbutton input for RX Antenna C (BOT) selection |
+| **Pin 8** | `BTN_TX_A` | Pushbutton input for TX Antenna A (TOP) selection |
+| **Pin 9** | `BTN_TX_B` | Pushbutton input for TX Antenna B (MID) selection |
+| **Pin 10** | `BTN_TX_C` | Pushbutton input for TX Antenna C (BOT) selection |
+| **Pin 11** | `PTT_PIN` | Optocoupler-isolated PTT input (PC817) |
+| **Pin 12** | `BTN_RX_ALL` | Quick button for selecting ALL RX antennas |
+| **Pin 13** | `BTN_TX_ALL` | Quick button for selecting ALL TX antennas |
+| **Pin A0 - A2**| `LED_RX_A/B/C`| LED status indicators for RX antennas |
+| **Pin A3, A6, A7**| `LED_TX_A/B/C`| LED status indicators for TX antennas (supports fade effect) |
+| **Pin A4** | `BTN_RX_MODE` | Pushbutton input to toggle between EXCL and FLEX RX modes |
+
+---
+
+## 📊 Relay & Antenna Logic Matrix
+
+All states below represent the actual physical voltage levels present at the Arduino pins, accounting for the software inversion (`!r`) applied to drive the switching transistors:
+
+| Antenna Combination | RELAY_1 (Pin 2) | RELAY_2 (Pin 3) | RELAY_3 (Pin 4) | RELAY_4 (Pin A5) |
+| :--- | :--- | :--- | :--- | :--- |
+| **TOP (A)** | HIGH (Deactivated) | LOW (Activated) | LOW (Activated) | LOW (Activated) |
+| **MID (B)** | LOW (Activated) | HIGH (Deactivated) | LOW (Activated) | LOW (Activated) |
+| **BOT (C)** | LOW (Activated) | LOW (Activated) | HIGH (Deactivated) | LOW (Activated) |
+| **TOP + MID (A+B)** | HIGH (Deactivated) | HIGH (Deactivated) | LOW (Activated) | HIGH (Activated) |
+| **TOP + BOT (A+C)** | HIGH (Deactivated) | LOW (Activated) | HIGH (Deactivated) | HIGH (Activated) |
+| **MID + BOT (B+C)** | LOW (Activated) | HIGH (Deactivated) | HIGH (Deactivated) | HIGH (Activated) |
+| **ALL (A+B+C)** | HIGH (Deactivated) | HIGH (Deactivated) | HIGH (Deactivated) | HIGH (Activated) |
+| **STANDBY (None)** | LOW (Activated) | LOW (Activated) | LOW (Activated) | LOW (Activated) |
+
+---
+
+## 🔌 Power-Off Fail-Safe Behavior (NC State)
+
+The hardware controller is engineered using **NC (Normally Closed)** relay contacts to provide a hardware fail-safe mechanism:
+
+1. When the controller is **unpowered** (or experiences a complete power failure), the switching transistor bases remain unbiased, leaving all relay coils de-energized.
+2. In this default unpowered state, the relay contacts fall back to their default **Normally Closed (NC)** positions, connecting **all three antennas (A+B+C)** in parallel.
+3. This architecture guarantees an operational fail-safe in contest or station environments: if power is lost, the antenna system defaults to a safe, multi-antenna connection rather than open-circuiting your transceiver.
+
+---
+
+## 💻 Python GUI Application Setup & Usage
+
+The Python GUI provides real-time status monitoring, COM port scanning, manual RX/TX switching, and mode configuration over a serial connection.
+
+### Prerequisites
+Ensure Python 3 is installed along with the required serial library:
+```bash
+pip install pyserial
+Running the Application
+
+    Connect the Arduino Nano to your PC via USB cable.
+
+    Launch the application:
+    Bash
+
+python stack_match_gui.py
+
+Select your Arduino's COM Port from the top drop-down menu and click Connect.
+
+Features:
+
+    Independent antenna toggling (TOP-A, MID-B, BOT-C) for RX and TX paths.
+
+    Dynamic MODE button (EXCL for single antenna selection / FLEX for multi-antenna selection).
+
+    Real-time PTT status visual indicators with smooth LED fading animations during transmission.
+
+---
+
+# ASMC 1-3 (Advanced StackMatch Controller)
+
 ASMC 1-3 je napredni mikrokontrolerski sustav za upravljanje i preklapanje triju visokofrekventnih (HF) antena u StackMatch konfiguraciji (TOP-A, MID-B, BOT-C). Sustav se sastoji od **Arduino Nano** mikrokontrolera koji izvršava logiku preklapanja u realnom vremenu te **Python (Tkinter) GUI** aplikacije za daljinsko upravljanje i nadzor putem serijske (USB) veze.
 
 ---
