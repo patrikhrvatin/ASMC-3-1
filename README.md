@@ -13,7 +13,7 @@ The **ASMC 1-3** is an advanced, microcontroller-based antenna controller design
 - [Relay & Antenna Logic Matrix](#-relay--antenna-logic-matrix)
 - [Power-Off Fail-Safe Behavior (NC State)](#-power-off-fail-safe-behavior-nc-state)
 - [Python GUI Application Setup & Usage](#-python-gui-application-setup--usage)
-- [Licenca - License](#-licenca--license)
+- [Licenca - License](#-licenca---license)
 
 ---
 
@@ -194,7 +194,7 @@ python asm_controller.py
 5. **Indikator Stanja:**
    - Donja traka i led indikatori na sučelju u realnom vremenu prikazuju PTT status (STANDBY ili ENGAGED) i trenutno aktivnu kombinaciju antena.
 
-### 4. 📄 Licenca / License
+### 4. 📄 Licenca - License
 
 ## 
 
