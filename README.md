@@ -202,5 +202,5 @@ Ovaj projekt je namijenjen isključivo za nekomercijalne, radioamaterske svrhe. 
 ### 🇬🇧 English
 This project is intended strictly for non-commercial, amateur radio purposes. Distribution, modification, and use of the software and hardware design are permitted free of charge for amateur use, provided that the original author is credited. Commercial use or resale without explicit permission from the author is strictly prohibited. The software is provided "as is", without warranty of any kind.
 
-This project is intended strictly for non-commercial, amateur radio purposes. Distribution, modification, and use of the software and hardware design are permitted free of charge for amateur use, provided that the original author is credited. Commercial use or resale without explicit permission from the author is strictly prohibited. The software is provided "as is", without warranty of any kind.
+### 73 de Patrik - 9A5CW
 
